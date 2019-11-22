@@ -1,0 +1,1 @@
+export { constructDayRouter } from './router';

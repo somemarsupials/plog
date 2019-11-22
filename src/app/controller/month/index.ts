@@ -1,0 +1,1 @@
+export { constructMonthRouter } from './router';

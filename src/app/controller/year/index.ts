@@ -1,0 +1,1 @@
+export { constructYearRouter } from './router';
