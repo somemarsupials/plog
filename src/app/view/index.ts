@@ -1,0 +1,1 @@
+export { renderLogView } from './log';

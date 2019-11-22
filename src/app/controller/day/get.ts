@@ -1,6 +1,7 @@
 import { RequestHandler } from 'express';
 
 import { requestParametersToDate } from '@app/helper';
+import { renderLogView } from '@app/view';
 import { Store } from '@app/types';
 
 export const _getLogByDate = () => (store: Store): RequestHandler => async (req, res) => {
@@ -9,7 +10,7 @@ export const _getLogByDate = () => (store: Store): RequestHandler => async (req,
 
     return res
       .status(200)
-      .send(await store.read(date));
+      .send(await renderLogView(store)(date));
   } catch (error) {
     console.error(error);
     return res.status(500).send('failed');
