@@ -1,4 +1,11 @@
-import { read } from './read';
-import { write } from './write';
+import { Store } from "@app/types";
 
-export const fsStore = { read, write };
+import { read } from "./read";
+import { write } from "./write";
+
+export const createFsStore = (root: string): Store => {
+  return {
+    read: read(root),
+    write: write(root)
+  };
+};

@@ -1,9 +1,9 @@
-import { renderFile } from 'ejs';
-import { Converter } from 'showdown';
+import { renderFile } from "ejs";
+import { Converter } from "showdown";
 
-import { Store } from '@app/types';
+import { Store } from "@app/types";
 
-export const _renderLogView = (
+export const _renderEditLogView = (
   _converter: Converter,
   _renderFile: typeof renderFile
 ) => (store: Store) => async (date: Date): Promise<string> => {
@@ -14,4 +14,7 @@ export const _renderLogView = (
   });
 };
 
-export const renderLogView = _renderLogView(new Converter(), renderFile)
+export const renderEditLogView = _renderEditLogView(
+  new Converter(),
+  renderFile
+);

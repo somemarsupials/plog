@@ -1,5 +1,5 @@
-import { constructApp } from './app';
-import { fsStore } from './store';
+import { constructApp } from "./app";
+import { createFsStore } from "./store";
 
-const app = constructApp(fsStore);
+const app = constructApp(createFsStore("/Users/tbw/log"));
 app.listen(5000);
