@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= today %> | edit</title>
+  </head>
+  <body>
+    <main>
+      <h1><%= today %> | edit</h1>
+      <article id="log-content">
+        <form action="/<%= today %>" method="post">
+          <label>
+            <textarea name="content"><%= content %></textarea>
+          </label>
+          <button value="submit">Submit</button>
+        </form>
+      </article>
+    </main>
+  </body>
+</html>

@@ -1,20 +1,25 @@
 import { renderFile } from "ejs";
-import { Converter } from "showdown";
 
 import { Store } from "@app/types";
+import { formatDateForDisplay } from '@app/helper';
+
+const getContent = async (date: Date, store: Store) => {
+  try {
+    return await store.read(date);
+  } catch (error) {
+    return '';
+  };
+};
 
 export const _renderEditLogView = (
-  _converter: Converter,
   _renderFile: typeof renderFile
 ) => (store: Store) => async (date: Date): Promise<string> => {
-  const content = _converter.makeHtml(await store.read(date));
-
-  return renderFile(`${__dirname}/template/log.ejs`, {
-    content
+  return renderFile(`${__dirname}/template.ejs`, {
+    content: await getContent(date, store),
+    today: formatDateForDisplay(date)
   });
 };
 
 export const renderEditLogView = _renderEditLogView(
-  new Converter(),
   renderFile
 );

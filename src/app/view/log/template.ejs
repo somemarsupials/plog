@@ -6,6 +6,9 @@
   <body>
     <main>
       <h1><%= today %></h1>
+      <a href="/<%= tomorrow %>">Next day</a>
+      <a href="/<%= yesterday %>">Previous day</a>
+      <a href="/<%= today %>/edit">Edit</a>
       <article id="log-content">
         <%- content %>
       </article>

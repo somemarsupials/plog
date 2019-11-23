@@ -7,7 +7,7 @@ import { Store } from "@app/types";
 export const constructApp = (store: Store): Express => {
   const app = express();
 
-  app.use(bodyParser.text({ type: "*/*" }));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use("/:year", constructYearRouter(store));
 
   return app;
