@@ -4,12 +4,16 @@ import { Converter } from "showdown";
 import { addDaysToDate, formatDateForDisplay } from "@app/helper";
 import { Store } from "@app/types";
 
-const getMarkdownContent = async (date: Date, store: Store, _converter: Converter) => {
+const getMarkdownContent = async (
+  date: Date,
+  store: Store,
+  _converter: Converter
+) => {
   try {
     return _converter.makeHtml(await store.read(date));
   } catch (error) {
-    return _converter.makeHtml('Nothing here yet!');
-  };
+    return _converter.makeHtml("Nothing here yet!");
+  }
 };
 
 export const _renderLogView = (

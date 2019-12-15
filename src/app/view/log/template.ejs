@@ -2,13 +2,16 @@
 <html>
   <head>
     <title><%= today %></title>
+    <link rel="stylesheet" href="/static/css/index.css" />
   </head>
   <body>
-    <main>
-      <h1><%= today %></h1>
+    <nav>
+      <p><%= today %></p>
       <a href="/<%= tomorrow %>">Next day</a>
       <a href="/<%= yesterday %>">Previous day</a>
       <a href="/<%= today %>/edit">Edit</a>
+    </nav>
+    <main>
       <article id="log-content">
         <%- content %>
       </article>

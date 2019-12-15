@@ -1,21 +1,24 @@
-import { RequestHandler } from "express";
-
 import { requestParametersToDate } from "@app/helper";
 import { renderEditLogView } from "@app/view";
-import { Store } from "@app/types";
+import { RequestHandlerWithStore } from "@app/types";
 
-export const _editLogByDate = () => (store: Store): RequestHandler => async (
-  req,
-  res
-) => {
+export const _editLogByDate = (
+  _requestParametersToDate: typeof requestParametersToDate,
+  _renderEditLogView: typeof renderEditLogView
+): RequestHandlerWithStore => async (store, req, res): Promise<void> => {
   try {
-    const date = requestParametersToDate(req.params);
+    const date = _requestParametersToDate(req.params);
 
-    return res.status(200).send(await renderEditLogView(store)(date));
+    res.status(200).send(await _renderEditLogView(store)(date));
+    return;
   } catch (error) {
     console.error(error);
-    return res.status(500).send("failed");
+    res.status(500).send("failed");
+    return;
   }
 };
 
-export const editLogByDate = _editLogByDate();
+export const editLogByDate = _editLogByDate(
+  requestParametersToDate,
+  renderEditLogView
+);

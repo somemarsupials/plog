@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= today %> | edit</title>
+    <title>Edit <%= today %></title>
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/theme/solarized.min.css" />
   </head>
   <body>
+    <nav>
+      <p><%= today %></p>
+      <a href="/<%= tomorrow %>">Next day</a>
+      <a href="/<%= yesterday %>">Previous day</a>
+      <a href="/<%= today %>">Back</a>
+    </nav>
     <main>
-      <h1><%= today %> | edit</h1>
+      <h1>Edit</h1>
       <article id="log-content">
         <form action="/<%= today %>" method="post">
           <label>
-            <textarea name="content"><%= content %></textarea>
+            <textarea id='content' name="content"></textarea>
           </label>
           <button value="submit">Submit</button>
         </form>
       </article>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/markdown/markdown.min.js"></script>
+    <script>
+      window.onload = () => {
+        // create editor
+        const node = document.getElementById('content');
+        const cm = CodeMirror.fromTextArea(node, {
+          mode: 'markdown',
+          lineWrapping: true
+        });
+
+        // configure editor
+        cm.setValue(<%- JSON.stringify(content) %>);
+        cm.setOption('theme', 'solarized dark');
+      };
+    </script>
   </body>
 </html>

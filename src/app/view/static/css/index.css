@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|PT+Serif&display=swap');
+
+
+html {
+  height: 100%;
+  font-family: 'PT Serif';
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Lobster';
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 1rem 2rem;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 2rem;
+}
+
+nav * {
+  padding-right: 1rem;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+}
+
+h1 {
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+}
+
+p {
+  padding-bottom: 1rem;
+}
+
+.CodeMirror {
+  padding: 1rem;
+  height: 80%;
+}

@@ -1,23 +1,19 @@
-import { RequestHandler } from "express";
+import { formatDateForDisplay, requestParametersToDate } from "@app/helper";
+import { RequestHandlerWithStore } from "@app/types";
 
-import {
-  formatDateForDisplay,
-  requestParametersToDate
-} from "@app/helper";
-
-import { Store } from "@app/types";
-
-export const _createLogByDate = () => (store: Store): RequestHandler => async (
+export const _createLogByDate = (): RequestHandlerWithStore => async (store,
   req,
   res
-) => {
+): Promise<void> => {
   try {
     const date = requestParametersToDate(req.params);
     await store.write(date, req.body.content);
-    return res.redirect(`/${formatDateForDisplay(date)}`);
+    res.redirect(`/${formatDateForDisplay(date)}`);
+    return;
   } catch (error) {
     console.error(error);
-    return res.status(500).send("failed\n");
+    res.status(500).send("failed\n");
+    return;
   }
 };
 
